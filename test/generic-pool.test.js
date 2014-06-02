@@ -224,9 +224,12 @@ module.exports = {
         });
 
         // subsequent calls to acquire should return an error.
-        assert.throws(function() {
-            pool.acquire(function(client) {});
-        }, Error);
+        // assert.throws(function() {
+        //     pool.acquire(function(client) {});
+        // }, Error);
+        pool.acquire(function(err, client) {
+            assert.equal(typeof err, 'object');
+        });        
     },
 
     'handle creation errors' : function (beforeExit) {
